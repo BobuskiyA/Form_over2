@@ -1,18 +1,19 @@
 <div class="payment_box payment_method_cardknox" style="
-    margin-bottom: -470px;
+    margin-bottom: -490px;
     position: relative;
     z-index: 99;
     display: none;
+    margin-top: 40px;
 ">
 	<div id="cardknox-payment-data" data-panel-label="" data-description="" data-email="" data-amount="5.99" data-currency="usd" data-allow-remember-me="true"><p>Pay with your credit card.</p>
         <ul class="woocommerce-SavedPaymentMethods wc-saved-payment-methods" data-count="0"></ul>
-		<fieldset id="wc-cardknox-cc-form" class="wc-credit-card-form wc-payment-form">
+		<fieldset id="wc-cardknox-cc-form" class="wc-credit-card-form wc-payment-form" style="margin-bottom: -10px;">
 			<p><label data-ifields-id="card-data-error" id="ifieldsError" style="display:none;"></label></p>
-			<p class="form-row form-row-wide">
-				<label for="cardknox-card-number">Card number <span class="required">*</span></label>
+			<p class="form-row form-row-wide" style="margin: 0px">
+				<label for="cardknox-card-number">CARD NUMBER <span class="required">*</span></label>
                 <form id="data-form" autocomplete="on">
                     <label id="data-lbl" for="data" style="display: none;">Card Number</label>
-                    <input id="card-number" type="text" data-threeds="pan" autocomplete="cc-number" name="cardnumber" placeholder="Card Number" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 225px; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <input id="card-number" type="text" data-threeds="pan" autocomplete="cc-number" name="cardnumber" placeholder="Card Number" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; height: 32px;box-sizing: content-box; width: 250px; background-color: rgb(242, 242, 242); font-weight: 400;">
                     <input type="hidden" value="id-mf53ius6pwi" id="id" data-threeds="id">
                     <input type="hidden" value="" id="amount" data-threeds="amount">
                     <input type="hidden" value="" id="month" data-threeds="month">
@@ -23,15 +24,15 @@
                 </form>
 			</p> 
             <input data-ifields-id="card-number-token" name="xCardNum" id="cardknox-card-number" type="hidden" value="">
-            <p class="form-row form-row-first">
-				<label for="cardknox-card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
+            <p class="form-row form-row-first" style="margin: 0px">
+				<label for="cardknox-card-expiry">EXPITY (MM/YY) <span class="required">*</span></label>
 				<input id="cardknox-card-expiry" class="input-text wc-credit-card-form-card-expiry" inputmode="numeric" autocomplete="cc-exp" autocorrect="no" autocapitalize="no" spellcheck="no" type="tel" placeholder="MM / YY">
 			</p>
-            <p class="form-row form-row-last">
-			    <label for="cardknox-card-cvc">Card code <span class="required">*</span></label>
+            <p class="form-row form-row-last" style="margin: 0px">
+			    <label for="cardknox-card-cvc">CARD CODE <span class="required">*</span></label>
                 <form id="data-form" autocomplete="on">
                     <label id="data-lbl" for="data" style="display: none;">CVC</label>
-                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 106px; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 130px;height: 32px;box-sizing: content-box; background-color: rgb(242, 242, 242); font-weight: 400;">
                     <input type="hidden" value="id-3tpvqm8122u" id="id" data-threeds="id">
                     <input type="hidden" value="" id="amount" data-threeds="amount">
                     <input type="hidden" value="" id="month" data-threeds="month">
@@ -47,7 +48,7 @@
 		</fieldset>
 		<p class="form-row woocommerce-SavedPaymentMethods-saveNew woocommerce-validated">
 			<input id="wc-cardknox-new-payment-method" name="wc-cardknox-new-payment-method" type="checkbox" value="true" style="width:auto;">
-			<label for="wc-cardknox-new-payment-method" style="display:inline;">Save to account</label>
+			<label for="wc-cardknox-new-payment-method" style="display:inline;">SAVE TO ACCOUNT</label>
 		</p>
     </div>		
 </div>
@@ -56,10 +57,15 @@
     $(function() {    
 
     
-    const cardnumberN = document.getElementById('card-number');
-    const expirationdateN = document.getElementById('cardknox-card-expiry');
-    const securitycodeN = document.getElementById('cvv');
+    const cardNumber = document.getElementById('card-number');
+    const expirationDate = document.getElementById('cardknox-card-expiry');
+    const securityCode = document.getElementById('cvv');
+
+    const style = document.createElement('style');
+    style.innerHTML = `input::placeholder {color: black;}`;
+    document.head.appendChild(style);
     
+    //Card number validation
     function validateCardNumber(cardNumber) {
       // Remove any non-numeric characters
       cardNumber = cardNumber.replace(/\D/g, '');
@@ -84,41 +90,59 @@
       return sum % 10 == 0;
     }
     
+    // CVV validation
     function validateCvv(cvv){
         return cvv.length != 0  ;
     }
 
-    function validateExpirationDateN(expirationDate){
+    //Expiration date validation
+    function validateexpirationdate(expirationDate){
         return expirationDate.length != 0  ;
     }
 
-    
-     $('#cardnumber').keyup(function()
+    //Validate card number on input
+    cardnumber.onkeyup(function()
     {
     
-        if (!validateCardNumber(cardnumberN.value) && cardnumberN.value.length > 18){
-            cardnumberN.style.setProperty("color", "red", "important");
+        if (!validateCardNumber(cardnumber.value) && cardnumber.value.length > 18){
+            cardnumber.style.setProperty("color", "red", "important");
             console.log("red");
         }else {
-            cardnumberN.style.removeProperty("color");
+            cardnumber.style.removeProperty("color");
         }
     
     });
     
     
-    button.addEventListener("click",function(){
+    const errorConteiner = document.getElementsByClassName('woocommerce-error')[0];
+    const errorMessage = document.createElement("li");
+    const payButton = document.getElementById("place_order");
+
+    console.log(errorConteiner);
+    console.log(payButton);
+
+
+
+    payButton.addEventListener("click",function(){
+        
+
         if(!validateCardNumber(cardnumber.value) && cardnumber.value.length > 18){
+            errorMessage.innerHTML+= "Card Number requiered";
+
             formover.style.display = 'none';
             formover.style.height = "230px";
             paymentcontent.style.marginBottom= "-220px";
         }
-        if(!validateZip(zipcode.value)) {
-            formover.style.display = 'none';
-            zipcode.style.setProperty("color", "red", "important");
-            formover.style.height = "200px";
-            paymentcontent.style.marginBottom= "-220px";
+        else if(!validateExpirationDate(expirationDate.value)) {
+            errorMessage.innerHTML+= "Invalid Expiration date";
         }
-        else zipcode.style.removeProperty('color');
+        else if(!validateCvv(cvv.value)) {
+            errorMessage.innerHTML+= "CVV requiered";
+        }else {
+            return;
+        }
+
+        errorConteiner.appendChild(errorMessage);
     }); 
     });
     
