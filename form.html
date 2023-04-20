@@ -1,0 +1,104 @@
+<div class="payment_box payment_method_cardknox" style="
+    margin-bottom: -470px;
+    position: relative;
+    z-index: 99;
+    display: none;
+">
+	<div id="cardknox-payment-data" data-panel-label="" data-description="" data-email="" data-amount="5.99" data-currency="usd" data-allow-remember-me="true"><p>Pay with your credit card.</p>
+        <ul class="woocommerce-SavedPaymentMethods wc-saved-payment-methods" data-count="0"></ul>
+		<fieldset id="wc-cardknox-cc-form" class="wc-credit-card-form wc-payment-form">
+			<p><label data-ifields-id="card-data-error" id="ifieldsError" style="display:none;"></label></p>
+			<p class="form-row form-row-wide">
+				<label for="cardknox-card-number">Card number <span class="required">*</span></label>
+
+				<iframe data-ifields-id="card-number" data-ifields-placeholder="Card Number" src="https://cdn.cardknox.com/ifields/2.5.1905.0801/ifield.htm?" +="" "1680608562"="" frameborder="0" width="100%" height="71"></iframe>
+			</p> 
+            <input data-ifields-id="card-number-token" name="xCardNum" id="cardknox-card-number" type="hidden" value="">
+            <p class="form-row form-row-first">
+				<label for="cardknox-card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
+				<input id="cardknox-card-expiry" class="input-text wc-credit-card-form-card-expiry" inputmode="numeric" autocomplete="cc-exp" autocorrect="no" autocapitalize="no" spellcheck="no" type="tel" placeholder="MM / YY">
+			</p>
+            <p class="form-row form-row-last">
+			    <label for="cardknox-card-cvc">Card code <span class="required">*</span></label>
+			    <iframe data-ifields-id="cvv" data-ifields-placeholder="CVV" src="https://cdn.cardknox.com/ifields/2.5.1905.0801/ifield.htm?" +="" "1680608562"="" frameborder="0" width="100%" height="71" id="cvv-frame"></iframe>
+                <label data-ifields-id="card-data-error" style="color: red;"></label>
+		    </p>
+            <input data-ifields-id="cvv-token" name="xCVV" id="cardknox-card-cvc" type="hidden" value="">
+            <div class="clear"></div>
+		</fieldset>
+		<p class="form-row woocommerce-SavedPaymentMethods-saveNew woocommerce-validated">
+			<input id="wc-cardknox-new-payment-method" name="wc-cardknox-new-payment-method" type="checkbox" value="true" style="width:auto;">
+			<label for="wc-cardknox-new-payment-method" style="display:inline;">Save to account</label>
+		</p>
+    </div>		
+</div>
+
+<script>   
+    $(function() {    
+
+    
+    const cardnumberN = document.getElementById('card-number');
+    const expirationdateN = document.getElementById('cardknox-card-expiry');
+    const securitycodeN = document.getElementById('cvv');
+    
+    function validateCardNumber(cardNumber) {
+      // Remove any non-numeric characters
+      cardNumber = cardNumber.replace(/\D/g, '');
+    
+      // Check that the number is between 13 and 19 digits long
+      if (cardNumber.length < 13 || cardNumber.length > 19) {
+        return false;
+      }
+    
+      // Use Luhn algorithm to validate the card number
+      var sum = 0;
+      for (var i = 0; i < cardNumber.length; i++) {
+        var digit = parseInt(cardNumber.charAt(i));
+        if (i % 2 == 0) {
+          digit *= 2;
+          if (digit > 9) {
+            digit -= 9;
+          }
+        }
+        sum += digit;
+      }
+      return sum % 10 == 0;
+    }
+    
+    function validateZip(zipcode){
+        return zipcode.length == 5 ;
+    }
+    
+     $('#cardnumber').keyup(function()
+    {
+    
+        if (!validateCardNumber(cardnumberN.value) && cardnumberN.value.length > 18){
+            cardnumberN.style.setProperty("color", "red", "important");
+            console.log("red");
+        }else {
+            cardnumberN.style.removeProperty("color");
+        }
+    
+    });
+    
+    
+    button.addEventListener("click",function(){
+        if(!validateCardNumber(cardnumber.value) && cardnumber.value.length > 18){
+            formover.style.display = 'none';
+            formover.style.height = "230px";
+            paymentcontent.style.marginBottom= "-220px";
+        }
+        if(!validateZip(zipcode.value)) {
+            formover.style.display = 'none';
+            zipcode.style.setProperty("color", "red", "important");
+            formover.style.height = "200px";
+            paymentcontent.style.marginBottom= "-220px";
+        }
+        else zipcode.style.removeProperty('color');
+    }); 
+    });
+    
+    
+    
+</script> 
+    
