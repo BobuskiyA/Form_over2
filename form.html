@@ -10,8 +10,17 @@
 			<p><label data-ifields-id="card-data-error" id="ifieldsError" style="display:none;"></label></p>
 			<p class="form-row form-row-wide">
 				<label for="cardknox-card-number">Card number <span class="required">*</span></label>
-
-				<iframe data-ifields-id="card-number" data-ifields-placeholder="Card Number" src="https://cdn.cardknox.com/ifields/2.5.1905.0801/ifield.htm?" +="" "1680608562"="" frameborder="0" width="100%" height="71"></iframe>
+                <form id="data-form" autocomplete="on">
+                    <label id="data-lbl" for="data" style="display: none;">Card Number</label>
+                    <input id="card-number" type="text" data-threeds="pan" autocomplete="cc-number" name="cardnumber" placeholder="Card Number" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 225px; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <input type="hidden" value="id-mf53ius6pwi" id="id" data-threeds="id">
+                    <input type="hidden" value="" id="amount" data-threeds="amount">
+                    <input type="hidden" value="" id="month" data-threeds="month">
+                    <input type="hidden" value="" id="year" data-threeds="year">
+                    <input type="hidden" value="" id="eci" data-threeds="eci">
+                    <input type="hidden" value="" id="cavv" data-threeds="cavv">
+                    <input type="hidden" value="" id="xid" data-threeds="xid">
+                </form>
 			</p> 
             <input data-ifields-id="card-number-token" name="xCardNum" id="cardknox-card-number" type="hidden" value="">
             <p class="form-row form-row-first">
@@ -20,7 +29,17 @@
 			</p>
             <p class="form-row form-row-last">
 			    <label for="cardknox-card-cvc">Card code <span class="required">*</span></label>
-			    <iframe data-ifields-id="cvv" data-ifields-placeholder="CVV" src="https://cdn.cardknox.com/ifields/2.5.1905.0801/ifield.htm?" +="" "1680608562"="" frameborder="0" width="100%" height="71" id="cvv-frame"></iframe>
+                <form id="data-form" autocomplete="on">
+                    <label id="data-lbl" for="data" style="display: none;">CVC</label>
+                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 106px; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <input type="hidden" value="id-3tpvqm8122u" id="id" data-threeds="id">
+                    <input type="hidden" value="" id="amount" data-threeds="amount">
+                    <input type="hidden" value="" id="month" data-threeds="month">
+                    <input type="hidden" value="" id="year" data-threeds="year">
+                    <input type="hidden" value="" id="eci" data-threeds="eci">
+                    <input type="hidden" value="" id="cavv" data-threeds="cavv">
+                    <input type="hidden" value="" id="xid" data-threeds="xid">
+                </form>
                 <label data-ifields-id="card-data-error" style="color: red;"></label>
 		    </p>
             <input data-ifields-id="cvv-token" name="xCVV" id="cardknox-card-cvc" type="hidden" value="">
@@ -72,7 +91,7 @@
     function validateExpirationDateN(expirationDate){
         return expirationDate.length != 0  ;
     }
-    
+
     
      $('#cardnumber').keyup(function()
     {
