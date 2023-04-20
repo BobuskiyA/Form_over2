@@ -65,9 +65,14 @@
       return sum % 10 == 0;
     }
     
-    function validateZip(zipcode){
-        return zipcode.length == 5 ;
+    function validateCvv(cvv){
+        return cvv.length != 0  ;
     }
+
+    function validateExpirationDateN(expirationDate){
+        return expirationDate.length != 0  ;
+    }
+    
     
      $('#cardnumber').keyup(function()
     {
