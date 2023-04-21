@@ -1,19 +1,21 @@
 <div class="payment_box payment_method_cardknox" style="
-    margin-bottom: -490px;
+    margin-bottom: -501px;
     position: relative;
     z-index: 99;
     display: none;
     margin-top: 40px;
+    padding-top: 12px;
+
 ">
 	<div id="cardknox-payment-data" data-panel-label="" data-description="" data-email="" data-amount="5.99" data-currency="usd" data-allow-remember-me="true"><p>Pay with your credit card.</p>
         <ul class="woocommerce-SavedPaymentMethods wc-saved-payment-methods" data-count="0"></ul>
-		<fieldset id="wc-cardknox-cc-form" class="wc-credit-card-form wc-payment-form" style="margin-bottom: -10px;">
+		<fieldset id="wc-cardknox-cc-form" class="wc-credit-card-form wc-payment-form" style="">
 			<p><label data-ifields-id="card-data-error" id="ifieldsError" style="display:none;"></label></p>
 			<p class="form-row form-row-wide" style="margin: 0px">
 				<label for="cardknox-card-number">CARD NUMBER <span class="required">*</span></label>
                 <form id="data-form" autocomplete="on">
-                    <label id="data-lbl" for="data" style="display: none;">Card Number</label>
-                    <input id="card-number" type="text" data-threeds="pan" autocomplete="cc-number" name="cardnumber" placeholder="Card Number" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; height: 32px;box-sizing: content-box; width: 250px; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <label id="data-lbl" for="data" style="display: none;">CARD NUMBER </label>
+                    <input id="card-number" type="text" data-threeds="pan" autocomplete="cc-number" name="cardnumber" placeholder="Card Number" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; height: 30px;box-sizing: content-box; width: 220px; background-color: rgb(242, 242, 242); font-weight: 400; margin: 5px 0px;">
                     <input type="hidden" value="id-mf53ius6pwi" id="id" data-threeds="id">
                     <input type="hidden" value="" id="amount" data-threeds="amount">
                     <input type="hidden" value="" id="month" data-threeds="month">
@@ -25,14 +27,14 @@
 			</p> 
             <input data-ifields-id="card-number-token" name="xCardNum" id="cardknox-card-number" type="hidden" value="">
             <p class="form-row form-row-first" style="margin: 0px">
-				<label for="cardknox-card-expiry">EXPITY (MM/YY) <span class="required">*</span></label>
-				<input id="cardknox-card-expiry" class="input-text wc-credit-card-form-card-expiry" inputmode="numeric" autocomplete="cc-exp" autocorrect="no" autocapitalize="no" spellcheck="no" type="tel" placeholder="MM / YY">
+				<label for="cardknox-card-expiry">EXPIRY (MM/YY) <span class="required">*</span></label>
+				<input id="cardknox-card-expiry" class="input-text wc-credit-card-form-card-expiry" inputmode="numeric" autocomplete="cc-exp" autocorrect="no" autocapitalize="no" spellcheck="no" type="tel" placeholder="MM / YY" style="margin-bottom: 1em;">
 			</p>
             <p class="form-row form-row-last" style="margin: 0px">
 			    <label for="cardknox-card-cvc">CARD CODE <span class="required">*</span></label>
                 <form id="data-form" autocomplete="on">
                     <label id="data-lbl" for="data" style="display: none;">CVC</label>
-                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 130px;height: 32px;box-sizing: content-box; background-color: rgb(242, 242, 242); font-weight: 400;">
+                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 100px;height: 30px;box-sizing: content-box; background-color: rgb(242, 242, 242); font-weight: 400;margin: 5px 0px; margin">
                     <input type="hidden" value="id-3tpvqm8122u" id="id" data-threeds="id">
                     <input type="hidden" value="" id="amount" data-threeds="amount">
                     <input type="hidden" value="" id="month" data-threeds="month">
@@ -48,7 +50,7 @@
 		</fieldset>
 		<p class="form-row woocommerce-SavedPaymentMethods-saveNew woocommerce-validated">
 			<input id="wc-cardknox-new-payment-method" name="wc-cardknox-new-payment-method" type="checkbox" value="true" style="width:auto;">
-			<label for="wc-cardknox-new-payment-method" style="display:inline;">SAVE TO ACCOUNT</label>
+			<label for="wc-cardknox-new-payment-method" style="display:inline; margin-left: 10px;">SAVE TO ACCOUNT</label>
 		</p>
     </div>		
 </div>
@@ -60,6 +62,9 @@
     const cardNumber = document.getElementById('card-number');
     const expirationDate = document.getElementById('cardknox-card-expiry');
     const securityCode = document.getElementById('cvv');
+    console.log(cardNumber);
+    console.log(securityCode);
+
 
     const style = document.createElement('style');
     style.innerHTML = `input::placeholder {color: black;}`;
