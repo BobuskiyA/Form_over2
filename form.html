@@ -1,4 +1,4 @@
-<div class="payment_box payment_method_cardknox" style="
+<div class="payment_box payment_method_cardknox" id="form-over" style="
     margin-bottom: -501px;
     position: relative;
     z-index: 99;
@@ -34,7 +34,7 @@
 			    <label for="cardknox-card-cvc">CARD CODE <span class="required">*</span></label>
                 <form id="data-form" autocomplete="on">
                     <label id="data-lbl" for="data" style="display: none;">CVC</label>
-                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 100px;height: 30px;box-sizing: content-box; background-color: rgb(242, 242, 242); font-weight: 400;margin: 5px 0px; margin">
+                    <input id="cvv" type="text" data-threeds="pan" maxlength="4" autocomplete="cc-csc" name="cvc" placeholder="CVV" style="border-width: 0px; border-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgb(67, 69, 75); border-image: initial; font-size: 19.8px; padding: 12.25px; width: 100px;height: 30px;box-sizing: content-box; background-color: rgb(242, 242, 242); font-weight: 400;margin: 5px 0px; ">
                     <input type="hidden" value="id-3tpvqm8122u" id="id" data-threeds="id">
                     <input type="hidden" value="" id="amount" data-threeds="amount">
                     <input type="hidden" value="" id="month" data-threeds="month">
@@ -55,13 +55,13 @@
     </div>		
 </div>
 
-<script>   
-    $(function() {    
-
+<script>     
+jQuery(function(){
     
     const cardNumber = document.getElementById('card-number');
     const expirationDate = document.getElementById('cardknox-card-expiry');
     const securityCode = document.getElementById('cvv');
+    const formover = document.getElementById("form-over");
     console.log(cardNumber);
     console.log(securityCode);
 
@@ -106,14 +106,15 @@
     }
 
     //Validate card number on input
-    cardnumber.onkeyup(function()
+    cardNumber.addEventListener("keyup",function()
     {
-    
-        if (!validateCardNumber(cardnumber.value) && cardnumber.value.length > 18){
-            cardnumber.style.setProperty("color", "red", "important");
+    log("inside onkeyup");
+        if (!validateCardNumber(cardNumber.value) && cardNumber.value.length > 18){
+            
+            cardNumber.style.color= "red";
             console.log("red");
         }else {
-            cardnumber.style.removeProperty("color");
+            cardNumber.style.removeProperty("color");
         }
     
     });
@@ -130,13 +131,10 @@
 
     payButton.addEventListener("click",function(){
         
+        formover.style.display = "none";
 
-        if(!validateCardNumber(cardnumber.value) && cardnumber.value.length > 18){
+        if(!validateCardNumber(cardNumber.value) && cardNumber.value.length > 18){
             errorMessage.innerHTML+= "Card Number requiered";
-
-            formover.style.display = 'none';
-            formover.style.height = "230px";
-            paymentcontent.style.marginBottom= "-220px";
         }
         else if(!validateExpirationDate(expirationDate.value)) {
             errorMessage.innerHTML+= "Invalid Expiration date";
@@ -147,10 +145,10 @@
             return;
         }
 
+        
         errorConteiner.appendChild(errorMessage);
     }); 
-    });
-    
+});    
     
     
 </script> 
